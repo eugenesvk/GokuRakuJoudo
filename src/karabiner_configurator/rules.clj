@@ -43,6 +43,7 @@
     (def sub (keysym/move-modi-mandatory-front sub1))
     (def sub                                   sub1)
     )
+  (if (not= from sub) (println "  ¦" from "⟶⟶⟶f" sub))
   (from-key-pos des sub)
 )
 
@@ -88,6 +89,7 @@
                       (def sub (keysym/move-modi-mandatory-front sub1))
                       (def sub                                   sub1)
                       )
+                    (if (not= v sub) (println "  ¦" v "⟶⟶⟶t" sub))
                     (def v sub)
               ))
               (massert (or (contains? (:tos @conf-data) v)
@@ -178,6 +180,7 @@
     (def sub (keysym/move-modi-mandatory-front sub1))
     (def sub                                   sub1)
     )
+  (if (not= to sub) (println "  ¦" to "⟶⟶⟶t" sub))
   (to-key-pos des sub)
 )
 
