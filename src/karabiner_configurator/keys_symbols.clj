@@ -85,3 +85,36 @@
     (keyword (string/replace (replace-map-h k keys-symbols) #"^:" ""))
     k
   ))
+
+(def modi-must-re	#"![ACSTOQWERFP]+")
+(defn find-modi
+  [s matches-found]
+  (def modi-match (re-find modi-must-re s))
+  (if (nil? modi-match)
+    [s matches-found]
+    (do
+      (if (vector? modi-match) ; [full-match G1...]
+        (def modi-match-str (first modi-match))
+        (def modi-match-str        modi-match )
+      )
+      (def matches-found-cc (conj matches-found modi-match-str))
+      (recur (string/replace-first s modi-match-str "") matches-found-cc)
+      ))
+  )
+(defn move-modi-mandatory-front
+  "Replaces individual mandatory modifiers `!CC!TT` into a single group with one `!CCTT`"
+  [k]
+  (def s (if (keyword? k)
+    (name k)
+          k
+  ))
+  (def modi-must [])
+  (let [[s-remain modi-must] (find-modi s modi-must)]
+    (def modi-must-str
+      (if (empty? modi-must)
+        ""
+        (str "!" (string/replace (string/join "" modi-must) "!" "")) ; :!CC!AA → :!CCAA
+    ))
+    (keyword (str modi-must-str s-remain))
+    )
+  )
