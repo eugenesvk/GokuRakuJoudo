@@ -78,8 +78,18 @@
         :else
         (vec
          (flatten
-          (for [v to] ;; this for only return flatten vector
+          (for [v_ to] ;; this for only return flatten vector
             (do
+              (def v v_)
+              (if (keyword? v)
+                (do
+                  (def sub1 (keysym/key-name-sub-or-self v))
+                    (if (not= v sub1)
+                      (def sub (keysym/move-modi-mandatory-front sub1))
+                      (def sub                                   sub1)
+                      )
+                    (def v sub)
+              ))
               (massert (or (contains? (:tos @conf-data) v)
                            (k? v)
                            (noti? v)
@@ -125,7 +135,7 @@
 ;; two shell_command cd & ls, cd && ls
 ;; ["cd" "ls"] | multiple shell command
 ;; [{:set ["variable name" "variable value"]}] | set variable's value to string (fallback to `tos` definition)
-(defn to-key
+(defn to-key-pos
   "generate to config"
   [des to]
   (let [result nil
@@ -161,6 +171,15 @@
                      (vec (tos/parse-to des [to]))
                      :else result)]
     result))
+(defn to-key
+  [des to]
+  (def sub1 (keysym/key-name-sub-or-self to))
+  (if (not= to sub1)
+    (def sub (keysym/move-modi-mandatory-front sub1))
+    (def sub                                   sub1)
+    )
+  (to-key-pos des sub)
+)
 
 (defn merge-multiple-device-conditions
   [device-vec]
