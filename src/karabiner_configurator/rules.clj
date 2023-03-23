@@ -3,6 +3,7 @@
    [karabiner-configurator.conditions :as conditions]
    [karabiner-configurator.data :as d :refer [pkey? k? special-modi-k? conf-data pointing-k? consumer-k? noti? templates? devices? assoc-conf-data update-conf-data profile? raw-rule?]]
    [karabiner-configurator.froms :as froms]
+   [karabiner-configurator.keys-symbols :as keysym]
    [karabiner-configurator.misc :refer [massert contains??]]
    [karabiner-configurator.tos :as tos]))
 
@@ -12,7 +13,7 @@
 ;; :!Ca    | special modifier key
 ;; [:a :b] | simultaneous key
 ;; {...}   | fallback to `froms` definition
-(defn from-key
+(defn from-key-pos
   "generate normal from key config"
   [des from]
   (let [result nil
@@ -34,6 +35,16 @@
                  result)]
     (massert (some? result) (str "something wrong while parsing main rule " des))
     result))
+
+(defn from-key
+  [des from]
+  (def sub1 (keysym/key-name-sub-or-self from))
+  (if (not= from sub1)
+    (def sub (keysym/move-modi-mandatory-front sub1))
+    (def sub                                   sub1)
+    )
+  (from-key-pos des sub)
+)
 
 (defn parse-simple-set-variable
   [des vec & [_from-condition?]]
