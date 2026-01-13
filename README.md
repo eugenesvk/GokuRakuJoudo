@@ -1,3 +1,8 @@
+this is a temp ⑂fork that improves readability of your config via special symbols and allows
+  - `[:✦o          :🔢₉    ]` or
+  - `[:⇧›⎈›⎇›◆›o :🔢₉    ]` instead of
+  - `[:!RWEQp      :keypad_9]`
+see [KeySymbols](./KeySymbols.md) for the list of symbolic substitutions
 
 # GokuRakuJoudo
 
