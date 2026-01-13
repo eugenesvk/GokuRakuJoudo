@@ -22,9 +22,11 @@
 
 (def keys-symbols-other {
   "🌐" 	"!F","ƒ""!F","ⓕ""!F","Ⓕ""!F","🄵""!F","🅕""!F","🅵""!F"
-  "⇪" 	"P" 	; capslock
-  "∀" 	"!A"	; any regardless of side
-  "✱" 	"!!"	; hyper
+  "⇪" 	"P"    	; capslock
+  "∀" 	"!A"   	; any regardless of side
+  "✱›"	"!RWEQ"	; right-side "hyper"
+  "✦" 	"!RWEQ"	; right-side "hyper"
+  "✱" 	"!!"   	;  left-side "hyper"
   "∀﹖"	"##","∀?""##","﹖﹖""##","??""##"; optional any
   "︔" 	"semicolon"
   "“" 	"quote","”""quote","＂""quote","«""quote","»""quote"

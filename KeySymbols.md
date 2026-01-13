@@ -47,7 +47,9 @@ __NB!__
   |🌐 ƒ ⓕ Ⓕ 🄵 🅕 🅵 	|`!F`                                      	|
   |⇪             	|`P`  capslock                             	|
   |∀             	|`!A` any modifier regardless of side      	|
-  |✱             	|`!!` hyper                                	|
+  |✱             	|`!!` left-side "hyper" (‹⇧‹⎈‹⎇‹◆)         	|
+  |✱›            	|right-side "hyper" (⇧›⎈›⎇›◆›)             	|
+  |✦             	|right-side "hyper" (⇧›⎈›⎇›◆›)             	|
   |∀﹖ ∀? ﹖﹖ ??   	|`##` optional any                         	|
   |⎋             	|`escape`                                  	|
   |⭾ ↹           	|`tab`                                     	|
