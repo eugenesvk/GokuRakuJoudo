@@ -1,6 +1,13 @@
 name: Build & Release
 
-on: push
+on:
+  push             : # automatically on any tag
+    tags           :
+      - '*'
+  workflow_dispatch: # run manually
+    branches       : ["master"]
+  workflow_call    : # can be called by another workflow
+
 
 jobs:
   build:
